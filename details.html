@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تفاصيل الخبر - تمسان</title>
+  <link rel="stylesheet" href="css/enhanced-style.css">
+  <link rel="stylesheet" href="css/enhanced-style-responsive.css">
+  <style>
+    .article-container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .article-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .article-header h1 {
+      color: var(--primary-color);
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .article-meta {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .article-image {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .article-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-color);
+    }
+
+    .article-content p {
+      margin-bottom: 1.5rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-color);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 25px;
+      transition: var(--transition);
+      margin-top: 2rem;
+    }
+
+    .back-button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .article-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .article-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .article-image {
+        max-height: 300px;
+      }
+
+      .article-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">📰 تمسان</div>
+    <nav>
+      <a href="index.html" class="back-button">العودة للرئيسية</a>
+    </nav>
+  </header>
+
+  <main id="news-detail" class="article-container">
+    <div class="article-header">
+      <h1 id="article-title"></h1>
+      <div class="article-meta">
+        <span id="article-date"></span> | <span id="article-category"></span>
+      </div>
+    </div>
+    <img id="article-image" class="article-image" src="" alt="">
+    <div id="article-content" class="article-content"></div>
+  </main>
+
+  <script src="js/news-data.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const news = newsData.find(n => n.id === parseInt(id));
+
+    if (news) {
+      document.title = `${news.title} - تمسان`;
+      document.getElementById('article-title').textContent = news.title;
+      document.getElementById('article-image').src = news.image;
+      document.getElementById('article-image').alt = news.title;
+      document.getElementById('article-content').innerHTML = news.content;
+      document.getElementById('article-category').textContent = news.category || 'عام';
+      document.getElementById('article-date').textContent = news.date || new Date().toLocaleDateString('ar-SA');
+    } else {
+      document.getElementById('news-detail').innerHTML = `
+        <div class="article-header">
+          <h1>الخبر غير موجود</h1>
+          <p>عذراً، الخبر الذي تبحث عنه غير متوفر.</p>
+          <a href="index.html" class="back-button">العودة للرئيسية</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+/* زر القائمة للهواتف */
+.menu-toggle {
+  display: none;
+  background-color: #1a2e4a;
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+/* عند تصغير الشاشة */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul.navbar {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0c1a36;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  nav ul.navbar.show {
+    display: flex;
+  }
+
+  nav ul.navbar li {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  nav ul.navbar li a {
+    width: 100%;
+  }
+}
