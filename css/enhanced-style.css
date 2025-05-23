@@ -188,7 +188,7 @@ footer .footer-links a:hover {
   color: var(--main-gold);
 }
 
-/* الوضع الليلي */
+/* الوضع الليلي 
 @media (prefers-color-scheme: dark) {
   body {
     background: #2d2212;
@@ -213,4 +213,4 @@ footer .footer-links a:hover {
     background: #a67c52;
     color: #fff8e1;
   }
-}
+}*/
