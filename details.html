@@ -7,82 +7,174 @@
   <link rel="stylesheet" href="css/enhanced-style.css">
   <link rel="stylesheet" href="css/enhanced-style-responsive.css">
   <style>
-    .article-container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: var(--white);
-      border-radius: 15px;
-      box-shadow: var(--shadow);
+    :root {
+      --main-blue: #1a237e;
+      --main-gold: #ffd700;
+      --main-gradient: linear-gradient(120deg, #1a237e 0%, #26d0ce 100%);
+      --main-shadow: 0 4px 24px rgba(26,35,126,0.10);
+      --main-radius: 22px;
+      --white: #fff;
+      --gray: #f4f6fa;
     }
-
-    .article-header {
+    body {
+      background: var(--gray);
+      color: #222;
+      font-family: 'Tajawal', 'Cairo', Arial, sans-serif;
+      margin: 0;
+    }
+    header {
+      background: var(--main-gradient);
+      color: #fff;
+      padding: 2.2rem 0 1.2rem 0;
       text-align: center;
-      margin-bottom: 2rem;
+      box-shadow: var(--main-shadow);
+      border-bottom-left-radius: var(--main-radius);
+      border-bottom-right-radius: var(--main-radius);
+      position: relative;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
-
-    .article-header h1 {
-      color: var(--primary-color);
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, #1a237ed0 0%, #26d0cecc 100%);
+      z-index: 1;
+      filter: blur(4px);
     }
-
-    .article-meta {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+    .logo {
+      font-size: 2.3rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 16px #26d0ce55, 0 1px 0 #fff8;
+      color: var(--main-gold);
+      z-index: 2;
+      position: relative;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-
+    .logo::before {
+      content: '📰';
+      font-size: 1.2em;
+      margin-left: 0.3em;
+      filter: drop-shadow(0 2px 6px #26d0ce88);
+    }
+    .article-container {
+      background: #fff;
+      border-radius: var(--main-radius);
+      box-shadow: 0 6px 32px #1a298033, 0 1.5px 8px #26d0ce22;
+      max-width: 650px;
+      margin: 2.5rem auto;
+      padding: 2.2rem 1.5rem 2rem 1.5rem;
+      border: 1px solid #e0e0e0;
+      position: relative;
+      overflow: hidden;
+    }
+    .article-image-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
     .article-image {
       width: 100%;
-      max-height: 500px;
+      max-width: 420px;
+      height: 230px;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 2rem;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px #26d0ce33, 0 0 0 6px #fff, 0 0 0 10px #26d0ce22;
+      border: 3px solid #fff;
+      background: #f4f6fa;
+      transition: box-shadow 0.3s, transform 0.2s;
     }
-
+    .article-image:hover {
+      box-shadow: 0 8px 32px #26d0ce77, 0 0 0 8px #fff, 0 0 0 16px #26d0ce44;
+      transform: scale(1.03) rotate(-2deg);
+    }
+    .article-title {
+      font-size: 2.1rem;
+      font-weight: bold;
+      margin: 1.2rem 0 0.5rem 0;
+      text-align: center;
+      background: linear-gradient(90deg, #1a237e 0%, #26d0ce 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: 1.5px;
+      text-shadow: 0 2px 12px #1a298044;
+    }
+    .article-meta {
+      display: inline-block;
+      background: linear-gradient(90deg, #ffd700 60%, #26d0ce 100%);
+      color: #fff;
+      font-size: 1.01rem;
+      font-weight: 700;
+      border-radius: 18px;
+      padding: 0.4rem 1.2rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+      box-shadow: 0 1px 8px #1a298011;
+      letter-spacing: 1px;
+    }
     .article-content {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--text-color);
+      color: #222;
+      font-size: 1.18rem;
+      line-height: 2.1;
+      margin-top: 1.2rem;
+      text-align: justify;
+      background: rgba(245, 250, 255, 0.7);
+      border-radius: 12px;
+      padding: 1.2rem 1rem 1.2rem 1rem;
+      box-shadow: 0 1px 8px #1a298011;
+      font-weight: 500;
     }
-
     .article-content p {
       margin-bottom: 1.5rem;
     }
-
     .back-button {
       display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background: var(--primary-color);
-      color: var(--white);
+      padding: 0.8rem 2.2rem;
+      background: linear-gradient(90deg, #1a237e 0%, #26d0ce 100%);
+      color: #fff;
       text-decoration: none;
       border-radius: 25px;
-      transition: var(--transition);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       margin-top: 2rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 2px 12px #26d0ce22;
+      letter-spacing: 1px;
     }
-
     .back-button:hover {
-      background: var(--secondary-color);
-      transform: translateY(-2px);
+      background: linear-gradient(90deg, #26d0ce 0%, #1a237e 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 24px #1a298044;
     }
-
-    @media (max-width: 768px) {
+    @media (max-width: 700px) {
       .article-container {
-        margin: 1rem;
-        padding: 1.5rem;
+        padding: 1.1rem 0.2rem 1.1rem 0.2rem;
+        max-width: 99vw;
       }
-
-      .article-header h1 {
-        font-size: 1.8rem;
+      .article-title {
+        font-size: 1.25rem;
       }
-
       .article-image {
-        max-height: 300px;
+        height: 140px;
+        max-width: 99vw;
       }
-
       .article-content {
-        font-size: 1rem;
+        font-size: 1.01rem;
+        padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+      }
+      .logo {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -90,44 +182,52 @@
 <body>
   <header>
     <div class="logo">📰 تمسان</div>
-    <nav>
-      <a href="index.html" class="back-button">العودة للرئيسية</a>
-    </nav>
   </header>
-
-  <main id="news-detail" class="article-container">
-    <div class="article-header">
-      <h1 id="article-title"></h1>
-      <div class="article-meta">
-        <span id="article-date"></span> | <span id="article-category"></span>
+  <main>
+    <div class="article-container">
+      <div class="article-image-wrapper">
+        <img id="article-image" class="article-image" src="" alt="صورة الخبر" />
       </div>
+      <h1 class="article-title" id="article-title"></h1>
+      <div class="article-meta">
+        <span id="article-category"></span> | <span id="article-date"></span>
+      </div>
+      <div class="article-content" id="article-content"></div>
     </div>
-    <img id="article-image" class="article-image" src="" alt="">
-    <div id="article-content" class="article-content"></div>
   </main>
-
+  <footer>
+    <div class="footer-links">
+      <a href="index.html#افتتاحية">الرئيسية</a> |
+      <a href="index.html#تعليم">تعليم</a> |
+      <a href="index.html#صحة">صحة</a> |
+      <a href="index.html#مجتمع">مجتمع</a> |
+      <a href="index.html#رياضة">رياضة</a> |
+      <a href="index.html#بيئة">بيئة</a> |
+      <a href="index.html#سياسة">سياسة</a> |
+      <a href="index.html#اقتصاد">اقتصاد</a> |
+      <a href="index.html#ثقافة">ثقافة</a> |
+      <a href="index.html#طبية">طبية</a> |
+      <a href="index.html#تراث">تراث</a>
+    </div>
+    <div>جميع الحقوق محفوظة &copy; تمسان 2024</div>
+  </footer>
   <script src="js/news-data.js"></script>
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
-    const news = newsData.find(n => n.id === parseInt(id));
-
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    const newsId = getQueryParam('id');
+    const news = window.newsData && window.newsData.find(n => n.id == newsId);
     if (news) {
-      document.title = `${news.title} - تمسان`;
       document.getElementById('article-title').textContent = news.title;
-      document.getElementById('article-image').src = news.image;
+      document.getElementById('article-content').textContent = news.content;
+      document.getElementById('article-category').textContent = news.category;
+      document.getElementById('article-date').textContent = news.date || '';
+      document.getElementById('article-image').src = news.image || 'img/default.jpg';
       document.getElementById('article-image').alt = news.title;
-      document.getElementById('article-content').innerHTML = news.content;
-      document.getElementById('article-category').textContent = news.category || 'عام';
-      document.getElementById('article-date').textContent = news.date || new Date().toLocaleDateString('ar-SA');
     } else {
-      document.getElementById('news-detail').innerHTML = `
-        <div class="article-header">
-          <h1>الخبر غير موجود</h1>
-          <p>عذراً، الخبر الذي تبحث عنه غير متوفر.</p>
-          <a href="index.html" class="back-button">العودة للرئيسية</a>
-        </div>
-      `;
+      document.querySelector('.article-container').innerHTML = '<div style="color:#b00;text-align:center;padding:2rem;">عذراً، لم يتم العثور على الخبر المطلوب.</div>';
     }
   </script>
 </body>
