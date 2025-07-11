@@ -146,38 +146,4 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     navbar.style.transform = 'translateX(100%)';
   }
-
-  // إعداد أحداث الفيديو
-  const video = document.getElementById('tamsan-video');
-  const videoOverlay = document.querySelector('.video-overlay');
-  
-  if (video && videoOverlay) {
-    video.addEventListener('play', function() {
-      videoOverlay.style.opacity = '0';
-    });
-    
-    video.addEventListener('pause', function() {
-      videoOverlay.style.opacity = '1';
-    });
-    
-    video.addEventListener('ended', function() {
-      videoOverlay.style.opacity = '1';
-    });
-  }
 });
-
-// دالة تشغيل الفيديو - متاحة عالمياً
-function playVideo() {
-  const video = document.getElementById('tamsan-video');
-  const overlay = document.querySelector('.video-overlay');
-  
-  if (video && overlay) {
-    if (video.paused) {
-      video.play();
-      overlay.style.opacity = '0';
-    } else {
-      video.pause();
-      overlay.style.opacity = '1';
-    }
-  }
-}
